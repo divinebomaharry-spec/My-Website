@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Zone - Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Same styles as login page, with registration-specific modifications */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0056b3;
+            --secondary: #ff6b00;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-info span {
+            margin-right: 20px;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+            color: var(--secondary);
+        }
+
+        .social-icons a {
+            color: white;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+
+        .main-header {
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 28px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        /* Registration Container */
+        .register-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+
+        .register-box {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 550px;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .register-header {
+            background: linear-gradient(to right, var(--primary), #007bff);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .register-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .register-body {
+            padding: 40px;
+        }
+
+        /* Tab Navigation */
+        .register-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e1e5eb;
+        }
+
+        .register-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .register-tab.active {
+            color: var(--primary);
+        }
+
+        .register-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .register-tab:hover {
+            color: var(--primary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 2px solid #e1e5eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+
+        .name-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .country-code {
+            flex: 0 0 80px;
+        }
+
+        .phone-number {
+            flex: 1;
+        }
+
+        .country-code select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #e1e5eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            height: 6px;
+            background-color: #e1e5eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #dc3545;
+            border-radius: 3px;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .password-strength-text {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            color: var(--gray);
+        }
+
+        .password-requirements {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .password-requirements li {
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .password-requirements li::before {
+            content: '•';
+            position: absolute;
+            left: -15px;
+            color: var(--gray);
+        }
+
+        .password-requirements li.valid {
+            color: var(--success);
+        }
+
+        .password-requirements li.valid::before {
+            color: var(--success);
+        }
+
+        .terms-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 25px 0;
+            font-size: 0.9rem;
+        }
+
+        .terms-group input {
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .terms-group a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms-group a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e05a00;
+        }
+
+        /* Mobile App Section */
+        .mobile-app-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px dashed #e1e5eb;
+        }
+
+        .mobile-app-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .mobile-app-section p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .app-download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .app-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid #e1e5eb;
+        }
+
+        .app-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .app-button i {
+            font-size: 1.5rem;
+        }
+
+        .app-button.playstore {
+            color: #34A853;
+        }
+
+        .app-button.appstore {
+            color: #000;
+        }
+
+        .app-button .app-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .app-button .app-name {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .app-button .store-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 30px 20px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            .register-body {
+                padding: 30px 20px;
+            }
+            
+            .name-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .app-button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .register-header {
+                padding: 25px 20px;
+            }
+            
+            .register-header h2 {
+                font-size: 24px;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .phone-input-group {
+                flex-direction: column;
+            }
+            
+            .country-code {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar with Contact Info -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Port Harcourt, Rivers State, Nigeria</span>
+                <span><i class="fas fa-phone"></i> +2348164971220</span>
+                <span><i class="fas fa-envelope"></i> support@techzone.com</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="main-header">
+            <div class="logo">
+                <h1>TECH <span>ZONE</span></h1>
+            </div>
+            <div>
+                <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-arrow-left"></i> Back to Store
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Container -->
+    <div class="register-container">
+        <div class="register-box">
+            <div class="register-header">
+                <h2>Join Tech Zone!</h2>
+                <p>Create your account to start shopping</p>
+            </div>
+            
+            <div class="register-body">
+                <!-- Tab Navigation -->
+                <div class="register-tabs">
+                    <button class="register-tab active" data-tab="email-register">Sign up with Email</button>
+                    <button class="register-tab" data-tab="phone-register">Sign up with Phone</button>
+                </div>
+                
+                <!-- Email Registration Tab -->
+                <div class="tab-content active" id="email-register">
+                    <form id="emailRegisterForm">
+                        <div class="name-group">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="firstName" placeholder="Enter your first name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="lastName" placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reg-password">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="reg-password" placeholder="Create a password" required>
+                            </div>
+                            
+                            <div class="password-strength">
+                                <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                            </div>
+                            <div class="password-strength-text" id="passwordStrengthText">Password strength: Weak</div>
+                            
+                            <div class="password-requirements">
+                                <ul id="passwordRequirements">
+                                    <li>At least 8 characters</li>
+                                    <li>One uppercase letter</li>
+                                    <li>One lowercase letter</li>
+                                    <li>One number</li>
+                                    <li>One special character</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="terms-group">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">
+                                I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn">Create Account with Email</button>
+                    </form>
+                </div>
+                
+                <!-- Phone Registration Tab -->
+                <div class="tab-content" id="phone-register">
+                    <form id="phoneRegisterForm">
+                        <div class="name-group">
+                            <div class="form-group">
+                                <label for="phoneFirstName">First Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="phoneFirstName" placeholder="Enter your first name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phoneLastName">Last Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="phoneLastName" placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="phone-input-group">
+                                <div class="country-code">
+                                    <select id="regCountryCode">
+                                        <option value="+234" selected>+234 (NG)</option>
+                                        <option value="+233">+233 (GH)</option>
+                                        <option value="+254">+254 (KE)</option>
+                                        <option value="+256">+256 (UG)</option>
+                                        <option value="+27">+27 (ZA)</option>
+                                        <option value="+1">+1 (US)</option>
+                                        <option value="+44">+44 (UK)</option>
+                                        <option value="+91">+91 (IN)</option>
+                                    </select>
+                                </div>
+                                <div class="input-with-icon phone-number">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="regPhone" placeholder="812 345 6789" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phonePassword">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="phonePassword" placeholder="Create a password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="terms-group">
+                            <input type="checkbox" id="phoneTerms" required>
+                            <label for="phoneTerms">
+                                I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn">Create Account with Phone</button>
+                        
+                        <div class="divider" style="margin: 25px 0;">
+                            <span>Or sign up with OTP</span>
+                        </div>
+                        
+                        <button type="button" class="btn btn-secondary" id="signupWithOtp">
+                            <i class="fas fa-mobile-alt"></i> Sign up with OTP
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Mobile App Section -->
+                <div class="mobile-app-section">
+                    <h3>📱 Download Our Mobile App</h3>
+                    <p>Get the best shopping experience on your phone!</p>
+                    
+                    <div class="app-download-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.techzone.nigeria" target="_blank" class="app-button playstore">
+                            <i class="fab fa-google-play"></i>
+                            <div class="app-info">
+                                <div class="app-name">GET IT ON</div>
+                                <div class="store-name">Google Play</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://apps.apple.com/ng/app/tech-zone-electronics/id987654321" target="_blank" class="app-button appstore">
+                            <i class="fab fa-app-store-ios"></i>
+                            <div class="app-info">
+                                <div class="app-name">Download on the</div>
+                                <div class="store-name">App Store</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--secondary);">
+                        <i class="fas fa-star"></i> 4.8 Rating • 10K+ Downloads
+                    </p>
+                </div>
+                
+                <div class="login-link">
+                    Already have an account?
+                    <a href="login.html">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>TECH ZONE</h4>
+                <p>Nigeria's premier electronics & appliances destination with 1000+ products across all categories.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#televisions">TVs & Appliances</a></li>
+                    <li><a href="index.html#smartphones">Smartphones</a></li>
+                    <li><a href="index.html#laptops">Laptops</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Help & Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return & Refund</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Port Harcourt, Nigeria</li>
+                    <li><i class="fas fa-phone"></i> +2348164971220</li>
+                    <li><i class="fas fa-envelope"></i> support@techzone.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 TECH ZONE. All rights reserved. | Available on Google Play & App Store</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Switching
+        document.querySelectorAll('.register-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.register-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Password Strength Checker
+        document.getElementById('reg-password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            const requirements = document.getElementById('passwordRequirements').children;
+            
+            let strength = 0;
+            let messages = [];
+            
+            // Check password requirements
+            const hasLength = password.length >= 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            // Update requirement indicators
+            requirements[0].className = hasLength ? 'valid' : '';
+            requirements[1].className = hasUpperCase ? 'valid' : '';
+            requirements[2].className = hasLowerCase ? 'valid' : '';
+            requirements[3].className = hasNumbers ? 'valid' : '';
+            requirements[4].className = hasSpecial ? 'valid' : '';
+            
+            // Calculate strength
+            if (hasLength) strength += 20;
+            if (hasUpperCase) strength += 20;
+            if (hasLowerCase) strength += 20;
+            if (hasNumbers) strength += 20;
+            if (hasSpecial) strength += 20;
+            
+            // Update strength bar
+            strengthBar.style.width = strength + '%';
+            
+            // Update color based on strength
+            if (strength < 40) {
+                strengthBar.style.backgroundColor = '#dc3545';
+                strengthText.textContent = 'Password strength: Weak';
+            } else if (strength < 80) {
+                strengthBar.style.backgroundColor = '#ffc107';
+                strengthText.textContent = 'Password strength: Fair';
+            } else {
+                strengthBar.style.backgroundColor = '#28a745';
+                strengthText.textContent = 'Password strength: Strong';
+            }
+        });
+
+        // Email Registration Form
+        document.getElementById('emailRegisterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                showNotification('Please fill in all fields', 'error');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showNotification('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+            
+            if (!validatePassword(password)) {
+                showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character', 'error');
+                return;
+            }
+            
+            // Simulate registration
+            simulateRegistration('email', { firstName, lastName, email, password });
+        });
+
+        // Phone Registration Form
+        document.getElementById('phoneRegisterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('phoneFirstName').value;
+            const lastName = document.getElementById('phoneLastName').value;
+            const countryCode = document.getElementById('regCountryCode').value;
+            const phone = document.getElementById('regPhone').value.replace(/\D/g, '');
+            const password = document.getElementById('phonePassword').value;
+            
+            // Validation
+            if (!firstName || !lastName || !phone || !password) {
+                showNotification('Please fill in all fields', 'error');
+                return;
+            }
+            
+            if (!validatePhone(phone)) {
+                showNotification('Please enter a valid phone number', 'error');
+                return;
+            }
+            
+            if (!validatePassword(password)) {
+                showNotification('Password must be at least 8 characters with uppercase, lowercase, number, and special character', 'error');
+                return;
+            }
+            
+            const fullPhoneNumber = countryCode + phone;
+            
+            // Simulate registration
+            simulateRegistration('phone', { firstName, lastName, phone: fullPhoneNumber, password });
+        });
+
+        // Sign up with OTP
+        document.getElementById('signupWithOtp').addEventListener('click', function() {
+            const countryCode = document.getElementById('regCountryCode').value;
+            const phone = document.getElementById('regPhone').value.replace(/\D/g, '');
+            
+            if (!validatePhone(phone)) {
+                showNotification('Please enter a valid phone number', 'error');
+                return;
+            }
+            
+            const fullPhoneNumber = countryCode + phone;
+            showNotification(`Sending OTP to ${fullPhoneNumber}...`, 'info');
+            
+            // In real app, this would send OTP and redirect to verification page
+            setTimeout(() => {
+                showNotification(`OTP sent to ${fullPhoneNumber}. Check your messages.`, 'success');
+                // Redirect to OTP verification page
+                setTimeout(() => {
+                    window.location.href = 'verify-otp.html?phone=' + encodeURIComponent(fullPhoneNumber);
+                }, 2000);
+            }, 1500);
+        });
+
+        // Simulate registration process
+        function simulateRegistration(method, data) {
+            showNotification('Creating your account...', 'info');
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Save registration data (in real app, this would be sent to backend)
+                localStorage.setItem('techzone_tempRegistration', JSON.stringify({
+                    method: method,
+                    data: data,
+                    timestamp: new Date().toISOString()
+                }));
+                
+                showNotification('Account created successfully! Logging in...', 'success');
+                
+                // Auto login after registration
+                setTimeout(() => {
+                    sessionStorage.setItem('techzone_loggedIn', 'true');
+                    sessionStorage.setItem('techzone_user', JSON.stringify({
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        email: data.email || data.phone,
+                        method: method
+                    }));
+                    
+                    window.location.href = 'index.html';
+                }, 1500);
+            }, 2000);
+        }
+
+        // Validation functions
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            // Nigerian phone validation (starting with 7, 8, or 9 and 10 digits)
+            if (cleaned.length === 10 && /^[789]/.test(cleaned)) {
+                return true;
+            }
+            return /^\d{10,15}$/.test(cleaned);
+        }
+
+        function validatePassword(password) {
+            const hasLength = password.length >= 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            return hasLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecial;
+        }
+
+        // Format phone number as user types
+        document.getElementById('regPhone').addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.substring(0, 10);
+            
+            // Format as 812 345 6789
+            if (value.length > 6) {
+                value = value.substring(0, 3) + ' ' + value.substring(3, 6) + ' ' + value.substring(6);
+            } else if (value.length > 3) {
+                value = value.substring(0, 3) + ' ' + value.substring(3);
+            }
+            
+            this.value = value;
+        });
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            // Remove existing notification if any
+            const existingNotification = document.querySelector('.custom-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'custom-notification';
+            notification.textContent = message;
+            
+            // Set colors based on type
+            let bgColor, textColor;
+            switch(type) {
+                case 'success':
+                    bgColor = '#28a745';
+                    textColor = 'white';
+                    break;
+                case 'error':
+                    bgColor = '#dc3545';
+                    textColor = 'white';
+                    break;
+                case 'info':
+                    bgColor = '#17a2b8';
+                    textColor = 'white';
+                    break;
+                default:
+                    bgColor = '#333';
+                    textColor = 'white';
+            }
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: ${bgColor};
+                color: ${textColor};
+                padding: 15px 25px;
+                border-radius: 8px;
+                z-index: 10000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+                max-width: 350px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Add CSS for animation
+            if (!document.querySelector('#notification-styles')) {
+                const style = document.createElement('style');
+                style.id = 'notification-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Demo auto-fill for testing
+        document.addEventListener('keydown', function(e) {
+            // Press Ctrl+Shift+F to auto-fill registration form
+            if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+                document.getElementById('firstName').value = 'John';
+                document.getElementById('lastName').value = 'Doe';
+                document.getElementById('email').value = 'john.doe@example.com';
+                document.getElementById('reg-password').value = 'Password123!';
+                document.getElementById('confirmPassword').value = 'Password123!';
+                showNotification('Registration form filled. Click Create Account.', 'info');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Zone - Electronics Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0056b3;
+            --secondary: #ff6b00;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-info span {
+            margin-right: 20px;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+            color: var(--secondary);
+        }
+
+        .social-icons a {
+            color: white;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+
+        .main-header {
+            padding: 20px 0;
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 28px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-cart {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 350px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav {
+            background-color: var(--primary);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown {
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            display: none;
+            z-index: 100;
+        }
+
+        .dropdown li a {
+            color: var(--dark);
+            padding: 12px 20px;
+            width: 100%;
+        }
+
+        .dropdown li a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .nav-links li:hover .dropdown {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 50px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e05a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #004494;
+        }
+
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-section {
+            max-width: 1600px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .product-specs {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .product-price span {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rating-count {
+            color: #666;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #333;
+        }
+
+        .stock-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .in-stock {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .low-stock {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-details i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        .whatsapp-contact {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .whatsapp-contact:hover {
+            background-color: #128C7E;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            background-color: #222;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .search-box {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: var(--primary);
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 100%;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .search-box {
+                width: 250px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            .hero {
+                padding: 60px 20px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-cart {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .search-box {
+                width: 80%;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+            }
+            
+            .categories {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar with Contact Info -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Port Harcourt, Rivers State, Nigeria</span>
+                <span><i class="fas fa-phone"></i> +2348164971220</span>
+                <span><i class="fas fa-envelope"></i> support@techzone.com</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="main-header">
+            <div class="logo">
+                <h1>TECH <span>ZONE</span></h1>
+            </div>
+            
+            <div class="search-cart">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for electronics...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">12</span>
+                </div>
+                
+                <button class="mobile-menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li>
+                        <a href="#">Smartphones <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Apple iPhone</a></li>
+                            <li><a href="#">Samsung Galaxy</a></li>
+                            <li><a href="#">Xiaomi</a></li>
+                            <li><a href="#">Tecno</a></li>
+                            <li><a href="#">Infinix</a></li>
+                            <li><a href="#">Oppo</a></li>
+                            <li><a href="#">Vivo</a></li>
+                            <li><a href="#">OnePlus</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Laptops <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Apple MacBook</a></li>
+                            <li><a href="#">Dell</a></li>
+                            <li><a href="#">HP</a></li>
+                            <li><a href="#">Lenovo</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
+                            <li><a href="#">Microsoft Surface</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Gaming <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Gaming Consoles</a></li>
+                            <li><a href="#">Gaming Laptops</a></li>
+                            <li><a href="#">Gaming PCs</a></li>
+                            <li><a href="#">Gaming Accessories</a></li>
+                            <li><a href="#">Gaming Chairs</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Audio <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Headphones</a></li>
+                            <li><a href="#">Earbuds</a></li>
+                            <li><a href="#">Speakers</a></li>
+                            <li><a href="#">Soundbars</a></li>
+                            <li><a href="#">Microphones</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Wearables <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Smart Watches</a></li>
+                            <li><a href="#">Fitness Trackers</a></li>
+                            <li><a href="#">Smart Glasses</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Nigeria Largest Electronics Collection</h2>
+        <p>Discover the latest smartphones, laptops, gaming gear, audio devices, and wearables with unbeatable prices and warranty.</p>
+        <a href="#smartphones" class="btn">Shop All Categories</a>
+    </section>
+
+    <!-- Smartphones Section -->
+    <section class="products-section" id="smartphones">
+        <div class="category-section">
+            <div class="category-header">
+                <div class="section-title">
+                    <h2>Smartphones</h2>
+                    <p>Latest mobile phones from all brands</p>
+                </div>
+                <a href="#" class="view-all">View All 200+ Smartphones <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Smartphone Products -->
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="iPhone 15 Pro Max">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Apple</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">iPhone 15 Pro Max 1TB Titanium</h3>
+                        <div class="product-specs">6.7" Super Retina XDR, A17 Pro, 48MP Camera</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦1,250,000 <span>₦1,350,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Samsung Galaxy S23 Ultra">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Samsung</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Samsung Galaxy S23 Ultra 512GB</h3>
+                        <div class="product-specs">6.8" Dynamic AMOLED, Snapdragon 8 Gen 2</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.7/5)</span>
+                        </div>
+                        <div class="product-price">₦780,000 <span>₦850,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Xiaomi 13 Pro">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Xiaomi</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Xiaomi 13 Pro 256GB Ceramic White</h3>
+                        <div class="product-specs">6.73" AMOLED, Snapdragon 8 Gen 2, 50MP Leica Camera</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.6/5)</span>
+                        </div>
+                        <div class="product-price">₦320,000 <span>₦350,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1144&q=80" alt="Google Pixel 8 Pro">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Google</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Google Pixel 8 Pro 256GB Obsidian</h3>
+                        <div class="product-specs">6.7" OLED, Tensor G3, 50MP Camera, AI Features</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.8/5)</span>
+                        </div>
+                        <div class="product-price">₦650,000 <span>₦720,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1132&q=80" alt="OnePlus 11">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">OnePlus</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">OnePlus 11 5G 256GB Eternal Green</h3>
+                        <div class="product-specs">6.7" LTPO3 AMOLED, Snapdragon 8 Gen 2, 100W Fast Charging</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.6/5)</span>
+                        </div>
+                        <div class="product-price">₦550,000 <span>₦600,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1598327105854-c8674faddf74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Samsung Z Fold 5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Samsung</div>
+                        <div class="stock-status low-stock">Low Stock</div>
+                        <h3 class="product-name">Samsung Galaxy Z Fold5 512GB</h3>
+                        <div class="product-specs">7.6" Foldable AMOLED, Snapdragon 8 Gen 2, S Pen Support</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.7/5)</span>
+                        </div>
+                        <div class="product-price">₦950,000 <span>₦1,050,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Laptops Section -->
+        <div class="category-section" id="laptops">
+            <div class="category-header">
+                <div class="section-title">
+                    <h2>Laptops & Computers</h2>
+                    <p>Powerful laptops for work, gaming, and creativity</p>
+                </div>
+                <a href="#" class="view-all">View All 150+ Laptops <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Laptop Products -->
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="MacBook Pro">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Apple</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">MacBook Pro 16" M3 Max 48GB/1TB</h3>
+                        <div class="product-specs">16.2" Liquid Retina XDR, M3 Max, 40-core GPU</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(5.0/5)</span>
+                        </div>
+                        <div class="product-price">₦2,850,000 <span>₦3,100,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dell XPS">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Dell</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Dell XPS 15 9530 32GB/1TB</h3>
+                        <div class="product-specs">15.6" OLED 3.5K, i9-13900H, RTX 4070</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.7/5)</span>
+                        </div>
+                        <div class="product-price">₦1,850,000 <span>₦2,000,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1168&q=80" alt="HP Spectre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">HP</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">HP Spectre x360 16" 2-in-1 Laptop</h3>
+                        <div class="product-specs">16" OLED Touch, i7-1360P, 32GB RAM, 2TB SSD</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦1,450,000 <span>₦1,600,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Lenovo ThinkPad">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Lenovo</div>
+                        <div class="stock-status low-stock">Low Stock</div>
+                        <h3 class="product-name">Lenovo ThinkPad X1 Carbon Gen 11</h3>
+                        <div class="product-specs">14" 2.8K OLED, i7-1365U, 32GB RAM, 1TB SSD</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.8/5)</span>
+                        </div>
+                        <div class="product-price">₦1,350,000 <span>₦1,500,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1326&q=80" alt="Asus ZenBook">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Asus</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">ASUS ZenBook Pro 14 Duo OLED</h3>
+                        <div class="product-specs">14.5" OLED + 12.7" ScreenPad Plus, i9-13900H, RTX 4060</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.6/5)</span>
+                        </div>
+                        <div class="product-price">₦1,650,000 <span>₦1,800,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1137&q=80" alt="Microsoft Surface">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microsoft</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Microsoft Surface Laptop Studio 2</h3>
+                        <div class="product-specs">14.4" PixelSense Flow, i7-13700H, RTX 4060, 120Hz</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦2,150,000 <span>₦2,400,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gaming Section -->
+        <div class="category-section" id="gaming">
+            <div class="category-header">
+                <div class="section-title">
+                    <h2>Gaming Gear</h2>
+                    <p>Consoles, gaming PCs, and accessories</p>
+                </div>
+                <a href="#" class="view-all">View All 100+ Gaming Products <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Gaming Products -->
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="PlayStation 5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Sony</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">PlayStation 5 Digital Edition + Extra Controller</h3>
+                        <div class="product-specs">825GB SSD, 4K Gaming, Ray Tracing, 120 FPS</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦380,000 <span>₦420,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1605901309584-9ac8f7204e38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Xbox Series X">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Microsoft</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Xbox Series X 1TB + Game Pass Ultimate</h3>
+                        <div class="product-specs">1TB SSD, 4K Gaming, 120 FPS, Backward Compatibility</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.7/5)</span>
+                        </div>
+                        <div class="product-price">₦350,000 <span>₦390,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1142&q=80" alt="Alienware Gaming PC">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Alienware</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Alienware Aurora R15 Gaming Desktop</h3>
+                        <div class="product-specs">i9-13900KF, RTX 4090, 32GB RAM, 2TB SSD, Liquid Cooling</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(5.0/5)</span>
+                        </div>
+                        <div class="product-price">₦3,850,000 <span>₦4,200,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1206&q=80" alt="MSI Gaming Laptop">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">MSI</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">MSI Raider GE78 HX 17" Gaming Laptop</h3>
+                        <div class="product-specs">17" 240Hz Mini LED, i9-13980HX, RTX 4090, 64GB RAM</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.8/5)</span>
+                        </div>
+                        <div class="product-price">₦2,950,000 <span>₦3,250,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1585298724274-4c5f9b7d174d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="SteelSeries Headset">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">SteelSeries</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">SteelSeries Arctis Nova Pro Wireless</h3>
+                        <div class="product-specs">Multi-System Gaming Headset, Active Noise Cancellation, 40+ hours</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦120,000 <span>₦140,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80" alt="Razer Keyboard">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Razer</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Razer BlackWidow V4 Pro Mechanical Keyboard</h3>
+                        <div class="product-specs">RGB Chroma, Razer Green Switches, Wrist Rest, 8K Polling Rate</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.6/5)</span>
+                        </div>
+                        <div class="product-price">₦85,000 <span>₦95,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Audio Section -->
+        <div class="category-section" id="audio">
+            <div class="category-header">
+                <div class="section-title">
+                    <h2>Audio Devices</h2>
+                    <p>Headphones, speakers, and sound systems</p>
+                </div>
+                <a href="#" class="view-all">View All 120+ Audio Products <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Audio Products -->
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sony WH-1000XM5">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Sony</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Sony WH-1000XM5 Wireless Headphones</h3>
+                        <div class="product-specs">Industry-leading noise cancellation, 30-hour battery, Multipoint connection</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦185,000 <span>₦210,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1505744386214-51dba16a26fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Apple AirPods Max">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Apple</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Apple AirPods Max Space Gray</h3>
+                        <div class="product-specs">Active Noise Cancellation, Spatial Audio, 20-hour battery, Digital Crown</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.7/5)</span>
+                        </div>
+                        <div class="product-price">₦250,000 <span>₦280,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578319439580-5c1fde7f4c8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Bose Headphones">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bose</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Bose QuietComfort Ultra Headphones</h3>
+                        <div class="product-specs">Immersive Audio, Noise Cancelling, 24-hour battery, Comfortable fit</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.8/5)</span>
+                        </div>
+                        <div class="product-price">₦220,000 <span>₦250,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1165&q=80" alt="JBL Speaker">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">JBL</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">JBL PartyBox 310 Portable Speaker</h3>
+                        <div class="product-specs">240W Output, LED Lights, 18-hour battery, IPX4 Waterproof, Karaoke</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦195,000 <span>₦220,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sennheiser Headphones">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Sennheiser</div>
+                        <div class="stock-status low-stock">Low Stock</div>
+                        <h3 class="product-name">Sennheiser Momentum 4 Wireless Headphones</h3>
+                        <div class="product-specs">60-hour battery, Adaptive Noise Cancellation, Hi-Res Audio, Premium build</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.6/5)</span>
+                        </div>
+                        <div class="product-price">₦180,000 <span>₦200,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1153&q=80" alt="Shure Microphone">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Shure</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Shure SM7B Dynamic Microphone</h3>
+                        <div class="product-specs">Professional broadcast microphone, built-in pop filter, smooth frequency response</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(5.0/5)</span>
+                        </div>
+                        <div class="product-price">₦220,000 <span>₦250,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wearables Section -->
+        <div class="category-section" id="wearables">
+            <div class="category-header">
+                <div class="section-title">
+                    <h2>Wearables</h2>
+                    <p>Smart watches, fitness trackers, and smart glasses</p>
+                </div>
+                <a href="#" class="view-all">View All 80+ Wearables <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Wearable Products -->
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1579586337278-3fdcb248ccb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Apple Watch Ultra 2">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Apple</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Apple Watch Ultra 2 49mm Titanium</h3>
+                        <div class="product-specs">Rugged design, Always-On Retina display, 36-hour battery, Dual-frequency GPS</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦450,000 <span>₦500,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80" alt="Samsung Galaxy Watch6">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Samsung</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Samsung Galaxy Watch6 Classic 47mm</h3>
+                        <div class="product-specs">Rotating bezel, Super AMOLED, Sapphire Crystal glass, Advanced health tracking</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.7/5)</span>
+                        </div>
+                        <div class="product-price">₦280,000 <span>₦320,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1576243345690-4e4b79b63288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fitbit Charge 6">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fitbit</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Fitbit Charge 6 Fitness Tracker</h3>
+                        <div class="product-specs">7-day battery, GPS, ECG app, 24/7 heart rate tracking, Google apps</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.6/5)</span>
+                        </div>
+                        <div class="product-price">₦95,000 <span>₦110,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Garmin Fenix 7X">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Garmin</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Garmin Fenix 7X Sapphire Solar</h3>
+                        <div class="product-specs">51mm, Solar charging, Multi-band GPS, 28-day battery, Topographic maps</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.9/5)</span>
+                        </div>
+                        <div class="product-price">₦520,000 <span>₦580,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Ray-Ban Meta Smart Glasses">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Ray-Ban</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Ray-Ban Meta Smart Glasses Wayfarer</h3>
+                        <div class="product-specs">12MP camera, Open-ear audio, Meta AI, 4-hour battery, Stylish design</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(4.5/5)</span>
+                        </div>
+                        <div class="product-price">₦350,000 <span>₦400,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1576243345690-4e4b79b63288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Xiaomi Smart Band 8 Pro">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Xiaomi</div>
+                        <div class="stock-status in-stock">In Stock</div>
+                        <h3 class="product-name">Xiaomi Smart Band 8 Pro</h3>
+                        <div class="product-specs">1.74" AMOLED, 150+ sports modes, 14-day battery, Blood oxygen monitoring</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="rating-count">(4.8/5)</span>
+                        </div>
+                        <div class="product-price">₦45,000 <span>₦55,000</span></div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Tech Zone</h3>
+                <p>We're here to help you with all your electronics needs. Reach out to us through any of the following channels.</p>
+                
+                <div class="contact-details">
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Port Harcourt, Rivers State, Nigeria</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <span>+2348164971220</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>support@techzone.com</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span>Monday - Saturday: 9:00 AM - 8:00 PM</span>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/2348164971220" class="whatsapp-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Chat with us on WhatsApp
+                </a>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>TECH ZONE</h4>
+                <p>Nigeria's premier electronics destination with 650+ products across 5 major categories. Quality products with reliable after-sales support.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Product Categories</h4>
+                <ul>
+                    <li><a href="#smartphones">Smartphones (200+ Models)</a></li>
+                    <li><a href="#laptops">Laptops (150+ Models)</a></li>
+                    <li><a href="#gaming">Gaming (100+ Products)</a></li>
+                    <li><a href="#audio">Audio (120+ Products)</a></li>
+                    <li><a href="#wearables">Wearables (80+ Products)</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return & Refund</a></li>
+                    <li><a href="#">Warranty Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to get updates on new products and special offers.</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 TECH ZONE. All rights reserved. | Port Harcourt, Rivers State, Nigeria | Phone: +2348164971220 | Email: support@techzone.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Category Filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Scroll to the relevant section
+                const category = btn.textContent.toLowerCase();
+                if (category.includes('smartphone') || category.includes('phone')) {
+                    document.getElementById('smartphones').scrollIntoView({behavior: 'smooth'});
+                } else if (category.includes('laptop')) {
+                    document.getElementById('laptops').scrollIntoView({behavior: 'smooth'});
+                } else if (category.includes('gaming')) {
+                    document.getElementById('gaming').scrollIntoView({behavior: 'smooth'});
+                } else if (category.includes('audio')) {
+                    document.getElementById('audio').scrollIntoView({behavior: 'smooth'});
+                } else if (category.includes('wearable')) {
+                    document.getElementById('wearables').scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        });
+        
+        // Add to Cart Functionality
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 12;
+        
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                count++;
+                cartCount.textContent = count;
+                
+                // Show a quick confirmation
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Added';
+                btn.style.backgroundColor = '#28a745';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '';
+                }, 1500);
+                
+                // Show notification
+                showNotification('Product added to cart!');
+            });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+            showNotification('Message sent successfully!');
+        });
+        
+        // Newsletter Subscription
+        const newsletterBtn = document.querySelector('.newsletter .btn');
+        newsletterBtn.addEventListener('click', () => {
+            const emailInput = document.querySelector('.newsletter input');
+            if (emailInput.value && emailInput.value.includes('@')) {
+                showNotification('Thank you for subscribing to our newsletter!');
+                emailInput.value = '';
+            } else {
+                showNotification('Please enter a valid email address.', 'error');
+            }
+        });
+        
+        // Notification function
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: ${type === 'success' ? '#28a745' : '#dc3545'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                z-index: 10000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-box input');
+        const searchButton = document.querySelector('.search-box button');
+        
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm.trim() === '') return;
+            
+            // Show search results notification
+            showNotification(`Searching for: "${searchTerm}"`);
+            
+            // In a real application, this would filter products
+            // For now, just scroll to products section
+            document.getElementById('smartphones').scrollIntoView({behavior: 'smooth'});
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize with some random ratings
+        document.querySelectorAll('.product-rating').forEach(rating => {
+            const stars = rating.querySelectorAll('i');
+            const randomRating = Math.random() * 0.5 + 4.5; // Between 4.5 and 5.0
+            const ratingCount = Math.floor(Math.random() * 100) + 50; // Between 50 and 150
+            
+            // Update rating count text
+            const ratingCountSpan = rating.querySelector('.rating-count');
+            if (ratingCountSpan) {
+                ratingCountSpan.textContent = `(${randomRating.toFixed(1)}/5)`;
+            }
+        });
+    </script>
+</body>
+</html>
